@@ -376,9 +376,12 @@ fn main() {
 
     println!("Packets Delivered      | {:>14} | {:>15} |", 
         stats_flood.success_packets, stats_swarm.success_packets);
+
+    println!("Total Hops (Traffic)   | {:>14} | {:>15} |", 
+        stats_flood.total_hops, stats_swarm.total_hops);
         
-    let efficiency = (stats_swarm.success_packets as f32 / stats_swarm.total_energy) / (stats_flood.success_packets as f32 / stats_flood.total_energy);
-    println!("Energy Efficiency (Msg/E)|         1.0x |           {:>.1}x |", efficiency);
+    let battery_extension = stats_flood.total_energy / stats_swarm.total_energy;
+    println!("Battery Life Extension |         1.0x |           {:>.1}x | 🔋", battery_extension);
     
     println!("\n[Next Steps]");
     println!("1. Open 'map.html' (generate it with python src/visualize.py)");
